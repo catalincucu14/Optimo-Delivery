@@ -1,0 +1,17 @@
+﻿@page "/server-error"
+@inject INavigationService NavigationService;
+
+<PageTitle>Optimo Delivery - Server Error</PageTitle>
+
+<div class="loading">
+    <div class="not-found-container flex-center flex-column-center">
+        <div class="flex-center flex-row-center">
+            <span>5</span>
+            <button @onclick="@NavigationService.ToHome" title="To Home Page" />
+            <button @onclick="@NavigationService.ToHome" title="To Home Page" />
+        </div>
+        <div>
+            Sorry, the server could not respond
+        </div>
+    </div>
+</div>

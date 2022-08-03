@@ -1,0 +1,77 @@
+﻿@page "/authentication/register"
+@layout EmptyLayout
+@inherits RegisterBase
+@attribute [AllowAnonymous]
+
+<PageTitle>Optimo Delivery - Register</PageTitle>
+
+<div class="loading">
+    <div class="auth-container flex-center flex-column-center">
+        <button @onclick="@NavigationService.ToHome" class="auth-logo" title="To Home Page" />
+        <div class="auth-title">Create an account</div>
+
+        @*Register form*@
+        <EditForm OnValidSubmit="@RegisterAsync" Model="@RegisterRequestModel" class="auth-form flex-center flex-column-center">
+            <DataAnnotationsValidator />
+
+            @*Mail input*@
+            <div class="cool-input cool-input-dark">
+                <InputText @bind-Value="@RegisterRequestModel.Mail" id="Mail" title="Mail" placeholder=" " />
+                <label class="cool-input-label">
+                    <span class="cool-input-span">Mail*</span>
+                </label>
+            </div>
+            <ValidationMessage For=@( () => RegisterRequestModel.Mail ) />
+
+            @*Phone Number input*@
+            <div class="cool-input cool-input-dark">
+                <InputText @bind-Value="@RegisterRequestModel.Phone" id="Phone" title="Phone" placeholder=" " />
+                <label class="cool-input-label">
+                    <span class="cool-input-span">Phone*</span>
+                </label>
+            </div>
+            <ValidationMessage For=@( () => RegisterRequestModel.Phone ) />
+
+            @*Country select*@
+            <div class="cool-select cool-select-dark">
+                <span class="cool-select-span">Country*</span>
+                <InputSelect @bind-Value="@RegisterRequestModel.Country" id="Country" title="Country">
+                    @foreach (var country in (Country.List))
+                    {
+                        <option value="@country.Name">@country.Name</option>
+                    }
+                </InputSelect>
+            </div>
+
+            @*Password input*@
+            <div class="cool-input cool-input-dark">
+                <InputText @bind-Value="@RegisterRequestModel.Password" id="Password" type="password" title="Password" placeholder=" " />
+                <label class="cool-input-label">
+                    <span class="cool-input-span">Password*</span>
+                </label>
+            </div>
+            <ValidationMessage For=@( () => RegisterRequestModel.Password ) />
+
+            @*Confirm Password input*@
+            <div class="cool-input cool-input-dark">
+                <InputText @bind-Value="@RegisterRequestModel.ConfirmPassword" id="ConfirmPassword" type="password" title="Confirm Password" placeholder=" " />
+                <label class="cool-input-label">
+                    <span class="cool-input-span">Confirm Password*</span>
+                </label>
+            </div>
+            <ValidationMessage For=@( () => RegisterRequestModel.ConfirmPassword ) />
+
+            @*Submit button*@
+            <button id="submit" type="submit">Register</button>
+
+            @*Redirect to Login page*@
+            <div class="auth-redirect">
+                Have an account?
+                <button @onclick="@NavigationService.ToLogin">Login</button>
+            </div>
+        </EditForm>
+
+        @*Where the loading status or the errors will be shown*@
+        <Result ComponentState="@RegisterState" />
+    </div>
+</div>

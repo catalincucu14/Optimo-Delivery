@@ -1,0 +1,167 @@
+﻿/*4 up*/
+@keyframes translate-up-4px {
+    0% {
+        transform: translateY(5px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+@keyframes translate-down-4px {
+    0% {
+        transform: translateY(0px);
+    }
+
+    100% {
+        transform: translateY(5px);
+    }
+}
+
+/*40-35*/
+@keyframes resize-30-25 {
+    0% {
+        background-size: 25px 25px;
+    }
+
+    100% {
+        background-size: 30px 30px;
+    }
+}
+
+@keyframes resize-30-25-reverse {
+    0% {
+        background-size: 30px 30px;
+    }
+
+    100% {
+        background-size: 25px 25px;
+    }
+}
+
+/*100-85*/
+@keyframes resize-100-85 {
+    0% {
+        background-size: 85px 85px;
+    }
+
+    100% {
+        background-size: 100px 100px;
+    }
+}
+
+@keyframes resize-100-85-reverse {
+    0% {
+        background-size: 100px 100px;
+    }
+
+    100% {
+        background-size: 85px 85px;
+    }
+}
+
+/*200-175*/
+@keyframes resize-200-175 {
+    0% {
+        background-size: 175px 175px;
+    }
+
+    100% {
+        background-size: 200px 200px;
+    }
+}
+
+@keyframes resize-200-175-reverse {
+    0% {
+        background-size: 200px 200px;
+    }
+
+    100% {
+        background-size: 175px 175px;
+    }
+}
+
+/*loading page*/
+@keyframes layout-loading {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+/*loading wait*/
+div.loading-animation-container {
+    text-align: center;
+    height: 50vh;
+    padding: 25vh;
+}
+
+div.loading-animation {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 10px;
+}
+
+    div.loading-animation div {
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--white);
+        animation-timing-function: cubic-bezier(0, 1, 1, 0);
+    }
+
+        div.loading-animation div:nth-child(1) {
+            left: 8px;
+            animation: lds-ellipsis1 0.6s infinite;
+        }
+
+        div.loading-animation div:nth-child(2) {
+            left: 8px;
+            animation: lds-ellipsis2 0.6s infinite;
+        }
+
+        div.loading-animation div:nth-child(3) {
+            left: 32px;
+            animation: lds-ellipsis2 0.6s infinite;
+        }
+
+        div.loading-animation div:nth-child(4) {
+            left: 56px;
+            animation: lds-ellipsis3 0.6s infinite;
+        }
+
+@keyframes lds-ellipsis1 {
+    0% {
+        transform: scale(0);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes lds-ellipsis3 {
+    0% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(0);
+    }
+}
+
+@keyframes lds-ellipsis2 {
+    0% {
+        transform: translate(0, 0);
+    }
+
+    100% {
+        transform: translate(24px, 0);
+    }
+}

@@ -1,0 +1,57 @@
+﻿@inherits DriversModalBase
+
+<div class="section-fit-content" style="min-width: 630px">
+    <div class="section-header flex-center flex-row-space-between">
+        @*Header title*@
+        <button class="section-header-title">Drivers</button>
+
+        <div class=" flex-center flex-row-space-between">
+            @*Open create driver modal button*@
+            <button @onclick="@ShowCreateDriverModalAsync" class="cool-button-img-create cool-button-img flex-center flex-row-left" title="Create">
+                <span style="margin: 0;" />
+            </button>
+
+            @*Close modal button*@
+            <button @onclick="@CloseAsync" class="cool-button-img-close cool-button-img flex-center flex-row-left" title="Close">
+                <span style="margin: 0;" />
+            </button>
+        </div>
+    </div>
+
+    @*Drivers table*@
+    @if (Drivers.Count != 0)
+    {
+        <table class="orders-table" style="min-width: 600px; width: 100%;">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Mail</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Driver driver in Drivers)
+                {
+                    <tr>
+                        <td>@driver.Name</td>
+                        <td>@driver.Mail</td>
+                        <td style="text-align: right;">
+                            <button @onclick=@( ()=> ShowEditDriverModalAsync(driver) ) class="button-edit button-edit-white" title="Edit" />
+                            <span>&nbsp;&nbsp;</span>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    }
+    else if (!DriversModalState.Processing)
+    {
+        <div class="empty" style="min-width: 600px; width: 100%;">
+            <button />
+        </div>
+    }
+
+    @*Where the loading status or the errors will be shown*@
+    <Result ComponentState="@DriversModalState" ExtraMagrignTop="true" />
+</div>

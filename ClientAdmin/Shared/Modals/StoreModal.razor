@@ -1,0 +1,46 @@
+﻿@inherits StoreModalBase
+
+<div class="section-fit-content">
+    <EditForm OnValidSubmit="@CreateOrUpdateAsync" Model="@StoreModel" class="order-modal-form">
+        <DataAnnotationsValidator />
+
+        <div class="section-header flex-center flex-row-space-between">
+            @*Header title*@
+            <button class="section-header-title">Configure Store</button>
+
+            @*Action buttons*@
+            <div class="flex-center flex-row-space-between">
+                @*Update store button*@
+                <button class="cool-button-img-confirm cool-button-img flex-center flex-row-left" type="submit" title="Update">
+                    <span style="margin: 0;" />
+                </button>
+
+                @*Close modal button*@
+                <button @onclick="@CloseAsync" class="cool-button-img-close cool-button-img flex-center flex-row-left" title="Close">
+                    <span style="margin: 0;" />
+                </button>
+            </div>
+        </div>
+
+        @*City input*@
+        <div class="cool-input cool-input-light">
+            <InputText @bind-Value="@StoreModel.City" id="OrderId" type="text" title="Id" placeholder=" " />
+            <label class="cool-input-label">
+                <span class="cool-input-span">City*</span>
+            </label>
+        </div>
+
+        @*Address input*@
+        <div class="cool-input cool-input-light">
+            <InputText @bind-Value="@StoreModel.Address" id="OrderId" type="text" title="Id" placeholder=" " />
+            <label class="cool-input-label">
+                <span class="cool-input-span">Address*</span>
+            </label>
+        </div>
+
+        <ValidationSummary />
+    </EditForm>
+
+    @*Where the loading status or the errors will be shown*@
+    <Result ComponentState="@StoreModalState" ExtraMagrignTop="true" />
+</div>

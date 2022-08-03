@@ -1,0 +1,7 @@
+﻿@inject INavigationService NavigationService
+
+@*Redirects to Home page*@
+
+@code {
+    protected override void OnInitialized() => NavigationService.ToHome();
+}

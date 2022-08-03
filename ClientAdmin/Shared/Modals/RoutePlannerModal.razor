@@ -1,0 +1,43 @@
+﻿@inherits RoutePlannerModalBase
+
+<div class="section-fit-content">
+    <EditForm Model="@Configuration" class="order-modal-form">
+        <DataAnnotationsValidator />
+        <div class="section-header flex-center flex-row-space-between">
+            @*Header title*@
+            <button class="section-header-title">Configuration</button>
+
+            @*Action buttons*@
+            <div class="flex-center flex-row-space-between">
+                @*Confirm button*@
+                <button @onclick="@SubmitAsync" class="cool-button-img-confirm cool-button-img flex-center flex-row-left" title="Create">
+                    <span style="margin: 0;" />
+                </button>
+
+                @*Close modal button*@
+                <button @onclick="@CloseAsync" class="cool-button-img-close cool-button-img flex-center flex-row-left" title="Close">
+                    <span style="margin: 0;" />
+                </button>
+            </div>
+        </div>
+
+        @*Quantity input*@
+        <div class="cool-input cool-input-light">
+            <InputNumber @bind-Value="@Configuration.Quantity" id="Quantity" title="Quantity" />
+            <label class="cool-input-label">
+                <span class="cool-input-span">Quantity*</span>
+            </label>
+        </div>
+
+        @*Precision input*@
+        <div class="cool-input cool-input-light" >
+            <InputNumber @bind-Value="@Configuration.Precision" id="RouteName" title="Precision" />
+            <label class="cool-input-label">
+                <span class="cool-input-span">Precision*</span>
+            </label>
+        </div>
+
+        @*Where the loading status or the errors will be shown*@
+        <Result ComponentState="@RouteGeneratorModalState" ExtraMagrignTop="true" />
+    </EditForm>
+</div>

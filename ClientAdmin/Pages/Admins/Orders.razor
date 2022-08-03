@@ -1,0 +1,46 @@
+﻿@page "/account/orders"
+@layout DefaultLayout
+@inherits OrdersBase
+
+@*Page title*@
+<PageTitle>Optimo Delivery - Orders</PageTitle>
+
+@*Check if the user is authenticated, redirect to Home page otherwise*@
+<CheckAuthentication />
+
+<div class="loading">
+    @*Panel used to show the orders*@
+    <div class="section-max-width">
+        <div class="section-header flex-center flex-row-space-between">
+            @*Header title*@
+            <button class="section-header-title">Orders</button>
+
+            @*Search bar for orders*@
+            <input @bind-value="@Filter" @bind-value:event="oninput" type="search" class="section-search" placeholder="Search" />
+
+            @*Action buttons*@
+            <div class="flex-center flex-row-space-between">
+                @*Open Create Order Modal button*@
+                <button @onclick="@ShowCreateOrderModalAsync" class="cool-button-img-create cool-button-img flex-center flex-row-left" title="Create">
+                    <span style="margin: 0;" />
+                </button>
+
+                @*Open Import Orders Modal button*@
+                <button @onclick="@ShowImportOrdersModalAsync" class="cool-button-img-import cool-button-img flex-center flex-row-left" title="Import">
+                    <span style="margin: 0;" />
+                </button>
+
+                @*Refresh orders button*@
+                <button @onclick="@GetOrdersAsync" class="cool-button-img-refresh cool-button-img flex-center flex-row-left" title="Refresh">
+                    <span style="margin: 0;" />
+                </button>
+            </div>
+        </div>
+
+        @*Orders Table*@
+        <OrdersTable Orders="@Orders" ShowEditOrderModalAsync="@ShowEditOrderModalAsync" Filter="@Filter" Processing="@OrdersState.Processing" Update=true NoDelete=false CheckBox=false />
+
+        @*Where the loading status or the errors will be shown*@
+        <Result ComponentState="@OrdersState" ExtraMagrignTop="true" />
+    </div>
+</div>

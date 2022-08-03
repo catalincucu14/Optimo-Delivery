@@ -1,0 +1,29 @@
+﻿@if (ComponentState.Errors.Count != 0 || ComponentState.Processing)
+{
+    @if (ExtraMagrignTop)
+    {
+        <div style="display: inline-block; height: 15px;" />
+    }
+
+    <div class="flex-center flex-column-center">
+        @*Print every error*@
+        @foreach (string error in ComponentState.Errors)
+        {
+            <div class="error-message">@error</div>
+        }
+
+        @*Show the loading animation*@
+        @if (ComponentState.Processing)
+        {
+            <Loading />
+        }
+    </div>
+}
+
+@code {
+    [Parameter]
+    public ComponentState ComponentState { get; set; } = new();
+
+    [Parameter]
+    public bool ExtraMagrignTop { get; set; } = false;
+}

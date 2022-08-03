@@ -1,0 +1,262 @@
+﻿/*general - section*/
+div.section-max-width {
+    max-width: calc(100vw - 20px - 50px);
+    width: 100%;
+    margin: 25px auto;
+    padding: 15px;
+    background-color: var(--accent-dark);
+    box-shadow: rgba(225, 225, 225, .25) 0px 0px 5px;
+}
+
+    div.section-max-width div.section-header {
+        margin-bottom: 20px;
+    }
+
+div.section-fit-content {
+    width: fit-content;
+    margin: auto;
+    padding: 15px;
+    background-color: var(--accent-dark);
+    box-shadow: rgba(225, 225, 225, .25) 0px 0px 5px;
+}
+
+    div.section-fit-content div.section-header {
+        margin-bottom: 10px;
+    }
+
+    div.section-max-width input,
+    div.section-fit-content input,
+    div.section-max-width select,
+    div.section-fit-content select {
+        box-shadow: inset 0 0 5px rgba(225, 225, 225, .25);
+        border-color: var(--white);
+        background-color: var(--accent-light);
+        color: var(--white);
+    }
+
+        div.section-max-width input:focus,
+        div.section-fit-content input:focus,
+        div.section-max-width select:focus,
+        div.section-fit-content select:focus {
+            background-color: var(--accent-dark);
+        }
+
+div.section-header {
+    width: 100%;
+}
+
+button.section-header-title {
+    color: var(--white);
+    height: 32px;
+    min-width: fit-content;
+    max-width: fit-content;
+    padding: 2px 0 4px 0;
+    font-size: 24px;
+    cursor: default;
+}
+
+input.section-search {
+    background-color: var(--white);
+    min-height: 34px;
+    max-height: 34px;
+    width: 100%;
+    color: var(--black);
+    font-size: 17px;
+    margin: 0 0 0 10px;
+    padding: 5px 5px;
+    border-width: 1px;
+    border-color: var(--black);
+    box-shadow: inset 0 0 5px rgba(225, 225, 225, .25);
+}
+
+    input.section-search:focus {
+        border-color: var(--blue);
+        box-shadow: inset 0 0 5px rgba(100, 50, 250, .25);
+    }
+
+/*general - buttons*/
+button.button-edit-white {
+    background: transparent url("../svg/edit-white.svg") no-repeat;
+    background-position: center;
+    background-size: 25px 25px;
+    height: 25px;
+    width: 25px;
+    margin: 2px 0 0 0;
+    cursor: pointer;
+}
+
+button.button-edit-blue {
+    background: transparent url("../svg/edit-blue.svg") no-repeat;
+    background-position: center;
+    background-size: 25px 25px;
+    height: 25px;
+    width: 25px;
+    margin: 2px 0 0 0;
+    cursor: pointer;
+}
+
+button.button-edit-red {
+    background: transparent url("../svg/edit-red.svg") no-repeat;
+    background-position: center;
+    background-size: 25px 25px;
+    height: 25px;
+    width: 25px;
+    margin: 2px 0 0 0;
+    cursor: pointer;
+}
+
+button.button-edit-green {
+    background: transparent url("../svg/edit-green.svg") no-repeat;
+    background-position: center;
+    background-size: 25px 25px;
+    height: 25px;
+    width: 25px;
+    margin: 2px 0 0 0;
+    cursor: pointer;
+}
+
+button.button-arrow {
+    background: transparent url("../svg/arrow.svg") no-repeat;
+    background-position: center;
+    background-size: 25px 25px;
+    height: 25px;
+    width: 25px;
+    margin: 2px 0 0 0;
+    cursor: pointer;
+}
+
+/*orders*/
+table.orders-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-color: transparent;
+    background-color: rgb(30, 30, 30);
+    margin-top: 10px;
+}
+
+    table.orders-table tr {
+        border-width: 0 0 1px 0;
+        border-color: var(--white);
+    }
+
+    table.orders-table tbody tr:last-child {
+        border-width: 0;
+    }
+
+    table.orders-table th,
+    table.orders-table td {
+        text-align: left;
+        height: 30px;
+        font-weight: normal;
+        color: var(--white);
+        background-color: transparent;
+        padding: 0 10px 0 10px;
+    }
+
+        table.orders-table th:first-child,
+        table.orders-table td:first-child {
+            padding-left: 10px;
+        }
+
+        table.orders-table th:last-child,
+        table.orders-table td:last-child {
+            padding-right: 0;
+        }
+
+    table.orders-table thead, table.orders-table tbody {
+        cursor: default;
+    }
+
+    table.orders-table thead,
+    table.orders-table tbody {
+        font-size: 15px;
+        height: 25px;
+    }
+
+        table.orders-table tbody tr:last-child td {
+            border-width: 0px;
+        }
+
+div.empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+    div.empty button {
+        background: transparent url("../svg/empty.svg") no-repeat;
+        background-position: center;
+        background-size: 75px 75px;
+        height: 75px;
+        width: 75px;
+        margin: auto;
+        cursor: default;
+    }
+
+/*orders - import orders modal*/
+div.orders-import-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-width: 750px;
+    min-height: 250px;
+    padding: 20px 0 0 0;
+}
+
+div.orders-import-area {
+    background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' stroke='%23e1e1e1' stroke-width='1' stroke-dasharray='10' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
+    display: flex;
+    color: transparent;
+    font-size: 25px;
+    font-weight: bolder;
+    width: 750px;
+    height: 250px;
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: inset 0 0 10px rgba(225, 225, 225, .25), 0 0 10px rgba(225, 225, 225, .25);
+}
+
+    div.orders-import-area:hover {
+        background-color: var(--accent-dark);
+    }
+
+    div.orders-import-area > span {
+        cursor: pointer;
+        font-size: 35px;
+        color: var(--white);
+    }
+
+    div.orders-import-area input[type=file],
+    div.orders-import-area input[type=file] {
+        min-width: 750px;
+        min-height: 250px;
+        position: absolute;
+        margin: 0px;
+        padding: 0px;
+        opacity: 0;
+        cursor: pointer;
+    }
+
+/*orders - order modal*/
+form.order-modal-form {
+    display: flex;
+    flex-direction: column;
+}
+
+    form.order-modal-form div.form-separator {
+        display: inline-block;
+        width: 20px;
+    }
+
+/*routes*/
+div.routes-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-color: transparent;
+    background-color: var(--accent-dark);
+    margin-top: 10px;
+}

@@ -1,0 +1,71 @@
+﻿@inherits ImportOrdersModalBase
+
+<div class="section-fit-content">
+    <div class="section-header flex-center flex-row-space-between">
+        @*Header title*@
+        <button class="section-header-title">Import Orders</button>
+
+        @*Action buttons*@
+        <div class="flex-center flex-row-space-between">
+            @if (LogButton)
+            {
+                @*Export logs file botton*@
+                <button @onclick="@DownloadLogsAsync" class="cool-button-img-export cool-button-img flex-center flex-row-left" title="Download Logs File">
+                    <span style="margin: 0;" />
+                </button>
+            }
+
+            @*Close modal button*@
+            <button @onclick="@CloseAsync" class="cool-button-img-close cool-button-img flex-center flex-row-left" title="Close">
+                <span style="margin: 0;" />
+            </button>
+        </div>
+    </div>
+
+    @if (ImportPanel)
+    {
+        @*File input*@
+        <div class="orders-import-container">
+            <div class="orders-import-area">
+                <span>Import Excel file (.xlsx)</span>
+                <InputFile OnChange="@UploadExcelAsync" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" />
+            </div>
+        </div>
+    }
+    else if (OrdersPanel)
+    {
+        @*The table with the extracted orders*@
+        <table class="orders-table" style="min-width: 1000px; width: 100%;">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Mail</th>
+                    <th>Phone</th>
+                    <th>Left To Pay</th>
+                    <th>City</th>
+                    <th>Address</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Order order in Orders)
+                {
+                    <tr>
+                        <td>@order.CustomId</td>
+                        <td>@order.FirstName</td>
+                        <td>@order.LastName</td>
+                        <td>@order.Mail</td>
+                        <td>@order.Phone</td>
+                        <td>@order.LeftToPay</td>
+                        <td>@order.City</td>
+                        <td>@order.Address</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+
+    @*Where the loading status or the errors will be shown*@
+    <Result ComponentState="@ImportOrdersModalState" ExtraMagrignTop="true" />
+</div>

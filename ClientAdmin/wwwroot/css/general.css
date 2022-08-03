@@ -1,0 +1,174 @@
+﻿/*general*/
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400&display=swap');
+
+:root {
+    --black: rgba(0, 0, 0, .99);
+    --white: rgba(225, 225, 225, .99);
+    --accent-light: rgba(35, 35, 35, .99);
+    --accent-dark: rgba(25, 25, 25, .99);
+    --blue: rgba(100, 50, 250, .99);
+}
+
+* {
+    font-family: 'Fredoka', sans-serif;
+    border-style: solid;
+    border-width: 0px;
+    border-radius: 3px;
+    color: var(--white);
+    font-weight: normal;
+    margin: 0px;
+    padding: 0px;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    transition: all 0.4s ease-in-out;
+}
+
+app {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+body {
+    background-color: var(--accent-light);
+    color: var(--black);
+    height: 100%;
+}
+
+    body::-webkit-scrollbar {
+        display: none;
+    }
+
+a, a:hover {
+    text-decoration: none;
+}
+
+button {
+    background-color: transparent;
+    cursor: pointer;
+}
+
+    button:focus,
+    input:focus {
+        outline-width: 0px;
+    }
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+    -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, .5);
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+li {
+    margin: 5px;
+}
+
+div.loading {
+    animation: layout-loading .4s forwards;
+}
+
+div.startup-container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+/*flex*/
+.flex-center {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    text-align: center;
+    vertical-align: baseline;
+}
+
+.flex-row-top {
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.flex-column-top {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.flex-row-center {
+    flex-direction: row;
+    justify-content: center;
+}
+
+.flex-column-center {
+    flex-direction: column;
+    justify-content: center;
+}
+
+.flex-row-space-between {
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.flex-column-space-between {
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.flex-row-left {
+    flex-direction: row;
+    justify-content: left;
+}
+
+.flex-column-left {
+    flex-direction: column;
+    justify-content: left;
+}
+
+.flex-row-right {
+    flex-direction: row;
+    justify-content: right;
+}
+
+.flex-column-right {
+    flex-direction: column;
+    justify-content: right;
+}
+
+/*balzored*/
+.blazored-modal {
+    background-color: var(--white-dark);
+    width: fit-content;
+    height: fit-content;
+    border-width: 0px;
+    box-shadow: none;
+}
+
+.blazored-modal-content {
+    width: fit-content;
+    height: fit-content;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+    .blazored-modal-content::-webkit-scrollbar {
+        display: none;
+    }
+

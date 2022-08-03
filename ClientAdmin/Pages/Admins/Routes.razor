@@ -1,0 +1,88 @@
+﻿@page "/account/routes"
+@layout DefaultLayout
+@inherits RoutesBase
+
+@*Page title*@
+<PageTitle>Optimo Delivery - Routes</PageTitle>
+
+@*Check if the user is authenticated, redirect to Home page otherwise*@
+<CheckAuthentication />
+
+<div class="loading">
+    @*Panel used to show the undelivered orders*@
+    <div class="section-max-width">
+        <div class="section-header flex-center flex-row-space-between">
+            @*Header title*@
+            <button class="section-header-title">Routes</button>
+
+            @*Search bar for routes*@
+            <input @bind-value="@Filter" @bind-value:event="oninput" type="search" class="section-search" placeholder="Search" />
+
+            @*Action buttons*@
+            <div class=" flex-center flex-row-space-between">
+                @*Open Edit Route Modal button*@
+                <button @onclick="@ShowCreateRouteModalAsync" class="cool-button-img-create cool-button-img flex-center flex-row-left" title="Create">
+                    <span style="margin: 0;" />
+                </button>
+
+                @*Refresh routes button*@
+                <button @onclick="@GetRoutesAsync" class="cool-button-img-refresh cool-button-img flex-center flex-row-left" title="Refresh">
+                    <span style="margin: 0;" />
+                </button>
+            </div>
+        </div>
+
+        @*If are not any routes to display don't reder the table*@
+        @if (RoutesFiltered.Count != 0)
+        {
+            @*Routes table*@
+            @foreach (Route route in RoutesFiltered)
+            {
+                string style1 = "display: inline-block; font-size: 20px; color: rgba(225, 225, 225, .99);";
+                string style2 = route.HideOrders ? "transform: rotate(180deg);" : "";
+
+                string driverName = Drivers.Where(driver => driver.DriverId == route.DriverId).First().Name;
+                
+                @if (route.Completed == 0)
+                {
+                    style1 = "display: inline-block; font-size: 20px; color: rgba(30, 144, 255, .99);";
+                }
+                else
+                {
+                    style1 = "display: inline-block; font-size: 20px; color: rgba(0, 128, 0, .99);";
+                }
+
+                <div class="flex-column-center routes-table">
+                    <div class="flex-center flex-row-space-between" style="background-color: rgb(30, 30, 30);">
+                        @*Route Name*@
+                        <span style="@style1">&nbsp;&nbsp;@route.Name (@driverName)</span>
+
+                        @*Action buttons*@
+                        <div>
+                            @*Open Edit Route Modal button*@
+                            <button @onclick=@( () => ShowEditRouteModalAsync(route) ) class="button-edit button-edit-white" title="Edit" /><span>&nbsp;&nbsp;</span>
+
+                            @*Hide orders button*@
+                            <button @onclick=@( () => route.HideOrders = !route.HideOrders ) class="button-arrow" style="@style2" title="Show Orders" /><span>&nbsp;&nbsp;</span>
+                        </div>
+                    </div>
+
+                    @*Route's orders table*@
+                    @if (!route.HideOrders)
+                    {
+                        <OrdersTable Orders="@route.Orders" ShowEditOrderModalAsync="@ShowEditOrderModalAsync" Filter="@Filter" Update=true NoDelete=true CheckBox=false />
+                    }
+                </div>
+            }
+        }
+        else if (!RoutesState.Processing)
+        {
+            <div class="empty">
+                <button />
+            </div>
+        }
+
+        @*Where the loading status or the errors will be shown*@
+        <Result ComponentState="@RoutesState" ExtraMagrignTop="true" />
+    </div>
+</div>

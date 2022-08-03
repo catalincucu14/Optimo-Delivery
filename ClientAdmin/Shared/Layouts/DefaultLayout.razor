@@ -1,0 +1,98 @@
+﻿@inherits LayoutComponentBase
+
+<div class="loading">
+    @*Navbar*@
+    <nav class="navbar flex-center flex-row-space-between">
+        @*Logo*@
+        <div class="logo-container flex-center flex-row-center">
+            <button @onclick="@NavigationService.ToHome" />
+            <span>Optimo Delivery</span>
+        </div>
+
+        <div class="flex-center flex-row-center">
+            <AuthorizeView>
+                <Authorized>
+                    @*Redirect to "admin/orders" button*@
+                    <button class="cool-button flex-center flex-row-left" @onclick="@NavigationService.ToOrders">
+                        Orders
+                    </button>
+
+                    @*Redirect to "admin/routes" button*@
+                    <button class="cool-button flex-center flex-row-left" @onclick="@NavigationService.ToRoutes">
+                        Routes
+                    </button>
+
+                    @*Open Drivers Modal button*@
+                    <button @onclick="@ShowCreateOrUpdateDriversModal" class="cool-button flex-center flex-row-left">
+                        Drivers
+                    </button>
+
+                    @*Open Store Modal button*@
+                    <button @onclick="@ShowCreateOrUpdateStoreModal" class="cool-button flex-center flex-row-left">
+                        Store
+                    </button>
+
+                    @*Logout button*@
+                    <button class="navbar-auth-button" @onclick="@AuthenticationService.LogoutAsync">
+                        <span class="navbar-auth-button-logout">
+                            <span class="navbar-auth-button-img-logout" />
+                        </span>
+                    </button>
+                </Authorized>
+
+                <NotAuthorized>
+                    @*Redirect to "authentication/login" button*@
+                    <button class="navbar-auth-button" @onclick="@NavigationService.ToLogin">
+                        <span class="navbar-auth-button-login">
+                            <span class="navbar-auth-button-img-login" />
+                        </span>
+                    </button>
+                </NotAuthorized>
+            </AuthorizeView>
+        </div>
+    </nav>
+
+    <div class="body-container">
+        <div id="top" />
+
+        @*Where the body will render*@
+        @Body
+    </div>
+
+    @*Footer*@
+    <footer class="footer flex-center flex-row-space-between">
+        @*Link to project's Github page*@
+        <button class="footer-github" @onclick="@NavigationService.ToGithubAsync" title="Github" />
+
+        @*Jumps to top of the page*@
+        <div class="logo-container flex-center flex-row-center">
+            <span>Optimo</span>
+            <button />
+            <span>Delivery</span>
+        </div>
+
+        @*Link to Help page*@
+        <button class="footer-help" @onclick="@NavigationService.ToHelp" title="Help" />
+    </footer>
+</div>
+
+@code {
+    [Inject]
+    protected INavigationService NavigationService { get; set; } = default!;
+
+    [Inject]
+    protected IAuthenticationService AuthenticationService { get; set; } = default!;
+
+    [CascadingParameter]
+    public IModalService Modal { get; set; } = default!;
+
+    /// <summary>
+    /// Function used to open store modal
+    /// </summary>
+    protected void ShowCreateOrUpdateStoreModal() => Modal.Show<StoreModal>();
+
+    /// <summary>
+    /// Function used to show drivers modal
+    /// </summary>
+    protected void ShowCreateOrUpdateDriversModal() => Modal.Show<DriversModal>();
+}

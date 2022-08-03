@@ -1,0 +1,107 @@
+﻿@inherits RouteModalBase
+
+<div class="section-fit-content" style="min-width: 1050px">
+    <EditForm Model="@RouteModel" class="order-modal-form">
+        <DataAnnotationsValidator />
+
+        <div class="section-header flex-center flex-row-space-between">
+            @*Header title*@
+            @if (Edit)
+            {
+                <button class="section-header-title">Update Route</button>
+            }
+            else
+            {
+                <button class="section-header-title">Create Route</button>
+            }
+
+            @*Action buttons*@
+            <div class="flex-center flex-row-space-between">
+                @if (Edit)
+                {
+                    @*Delete order button*@
+                    <button @onclick="@( () => DeleteAsync() )" class="cool-button-img-delete cool-button-img flex-center flex-row-left" title="Delete">
+                        <span style="margin: 0;" />
+                    </button>
+
+                    @*Update order button*@
+                    <button @onclick="@( () => CreateOrUpdateAsync() )" class="cool-button-img-confirm cool-button-img flex-center flex-row-left" type="submit" title="Update">
+                        <span style="margin: 0;" />
+                    </button>
+
+                    @*Export Route botton*@
+                    <button @onclick="@DownloadRouteAsync" class="cool-button-img-export cool-button-img flex-center flex-row-left" title="Download Logs File">
+                        <span style="margin: 0;" />
+                    </button>
+                }
+                else
+                {
+                    @*Create order button*@
+                    <button @onclick="@( () => CreateOrUpdateAsync() )" class="cool-button-img-confirm cool-button-img flex-center flex-row-left" type="submit" title="Create">
+                        <span style="margin: 0;" />
+                    </button>
+                }
+
+                @*Close modal button*@
+                <button @onclick="@CloseAsync" class="cool-button-img-close cool-button-img flex-center flex-row-left" title="Close">
+                    <span style="margin: 0;" />
+                </button>
+            </div>
+        </div>
+
+        <div class="flex-center flex-row-space-between">
+            @*Route Name input*@
+            <div class="cool-input cool-input-light" style="margin: 0;">
+                <InputText @bind-Value="@RouteModel.Name" id="RouteName" title="Route Name" placeholder=" " />
+                <label class="cool-input-label">
+                    <span class="cool-input-span">Name*</span>
+                </label>
+            </div>
+
+            <div class="form-separator" />
+
+            @*Driver select*@
+            <div class="cool-select cool-select-light" style="margin: 0;">
+                <span class="cool-select-span">Driver*</span>
+                <InputSelect @bind-Value="@RouteModel.DriverId" id="Driver" title="Driver">
+                    @foreach (Driver driver in Drivers)
+                    {
+                        <option value="@driver.DriverId">@driver.Name</option>
+                    }
+                </InputSelect>
+            </div>
+
+            <div class="form-separator" />
+
+            @*Route State select*@
+            <div class="cool-select cool-select-light" style="margin: 0;">
+                <span class="cool-select-span">State*</span>
+                <InputSelect @bind-Value="@RouteModel.Completed" id="State" title="State">
+                    @foreach (var state in States)
+                    {
+                        <option value="@state.Value">@state.Key</option>
+                    }
+                </InputSelect>
+            </div>
+        </div>
+
+        <div class="flex-center flex-row-space-between">
+            @*Search bar for orders*@
+            <input @bind-value="@Filter" @bind-value:event="oninput" type="search" class="section-search" style="margin: 20px 0 10px 0" placeholder="Search" />
+
+            @*Select Orders button*@
+            <button @onclick="@ShowRouteGeneratorModalAsync" class="cool-button-img-engineer cool-button-img flex-center flex-row-left" style="margin: 20px 0 10px 5px" type="submit" title="Select Orders">
+                <span style="margin: 0;" />
+            </button>
+        </div>
+
+        @*Undelivered + route's orders table*@
+        <OrdersTable Orders="@Orders" Filter="@Filter" Processing="@RouteModalState.Processing" Update=false NoDelete=false CheckBox=true />
+
+        <ValidationSummary />
+    </EditForm>
+
+    @*Where the loading status or the errors will be shown*@
+    <Result ComponentState="@RouteModalState" ExtraMagrignTop="true" />
+</div>
+

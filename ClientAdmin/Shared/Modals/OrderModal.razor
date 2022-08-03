@@ -1,0 +1,150 @@
+﻿@inherits OrderModalBase
+
+<div class="section-fit-content">
+    <EditForm Model="@OrderModel" class="order-modal-form">
+        <DataAnnotationsValidator />
+
+        <div class="section-header flex-center flex-row-space-between">
+            @*Header title*@
+            @if (Edit)
+            {
+                <button class="section-header-title">Update Order</button>
+            }
+            else
+            {
+                <button class="section-header-title">Create Order</button>
+            }
+
+            @*Action buttons*@
+            <div class=" flex-center flex-row-space-between">
+                @if (Edit)
+                {
+                    @*Delete order button*@
+                    @if (!NoDelete)
+                    {
+                        <button @onclick="@( () => DeleteAsync() )" class="cool-button-img-delete cool-button-img flex-center flex-row-left" title="Delete">
+                            <span style="margin: 0;" />
+                        </button>
+                    }
+
+                    @*Update order button*@
+                    <button @onclick="@( () => CreateOrUpdateAsync() )" class="cool-button-img-confirm cool-button-img flex-center flex-row-left" title="Edit">
+                        <span style="margin: 0;" />
+                    </button>
+                }
+                else
+                {
+                    @*Create order button*@
+                    <button @onclick="@( () => CreateOrUpdateAsync() )" class="cool-button-img-confirm cool-button-img flex-center flex-row-left" title="Create">
+                        <span style="margin: 0;" />
+                    </button>
+                }
+
+                @*Close modal button*@
+                <button @onclick="@CloseAsync" class="cool-button-img-close cool-button-img flex-center flex-row-left" title="Close">
+                    <span style="margin: 0;" />
+                </button>
+            </div>
+        </div>
+
+        <div class="flex-row-center flex-center">
+            @*Custom Id input*@
+            <div class="cool-input cool-input-light cool-input-275px">
+                <InputText @bind-Value="@OrderModel.CustomId" id="CustomId" title="Id" placeholder=" " />
+                <label class="cool-input-label">
+                    <span class="cool-input-span">Id</span>
+                </label>
+            </div>
+
+            <div class="form-separator" />
+
+             @*State select*@
+            <div class="cool-select cool-select-light cool-input-275px">
+                <span class="cool-select-span">State*</span>
+                <InputSelect @bind-Value="@OrderModel.OrderState" id="State" title="State">
+                    @foreach (var state in States)
+                    {
+                        <option value="@state">@state</option>
+                    }
+                </InputSelect>
+            </div>
+
+            <div class="form-separator" />
+
+            @*Left To Pay input*@
+            <div class="cool-input cool-input-light cool-input-275px">
+                <InputNumber @bind-Value="@OrderModel.LeftToPay" id="LeftToPay" title="Left To Pay" placeholder=" " />
+                <label class="cool-input-label">
+                    <span class="cool-input-span">Left To Pay</span>
+                </label>
+            </div>
+        </div>
+
+        <div class="flex-row-center flex-center">
+            @*First Name input*@
+            <div class="cool-input cool-input-light">
+                <InputText @bind-Value="@OrderModel.FirstName" id="FirstName" title="First Name" placeholder=" " />
+                <label class="cool-input-label">
+                    <span class="cool-input-span">First Name</span>
+                </label>
+            </div>
+
+            <div class="form-separator" />
+
+            @*Last Name input*@
+            <div class="cool-input cool-input-light">
+                <InputText @bind-Value="@OrderModel.LastName" id="LastName" title="Last Name" placeholder=" " />
+                <label class="cool-input-label">
+                    <span class="cool-input-span">LastName</span>
+                </label>
+            </div>
+        </div>
+
+        <div class="flex-row-center flex-center">
+            @*Mail input*@
+            <div class="cool-input cool-input-light">
+                <InputText @bind-Value="@OrderModel.Mail" id="Mail" title="Mail" placeholder=" " />
+                <label class="cool-input-label">
+                    <span class="cool-input-span">Mail</span>
+                </label>
+            </div>
+
+            <div class="form-separator" />
+
+            @*Phone input*@
+            <div class="cool-input cool-input-light">
+                <InputText @bind-Value="@OrderModel.Phone" id="Phone" title="Phone" placeholder=" " />
+                <label class="cool-input-label">
+                    <span class="cool-input-span">Phone*</span>
+                </label>
+            </div>
+        </div>
+
+        <div class="flex-row-center flex-center">
+            @*City input*@
+            <div class="cool-input cool-input-light">
+                <InputText @bind-Value="@OrderModel.City" id="City" title="City" placeholder=" " />
+                <label class="cool-input-label">
+                    <span class="cool-input-span">City*</span>
+                </label>
+            </div>
+
+            <div class="form-separator" />
+
+            @*Address input*@
+            <div class="flex-center flex-column-center fit-content">
+                <div class="cool-input cool-input-light">
+                    <InputText @bind-Value="@OrderModel.Address" id="Address" title="Address" placeholder=" " />
+                    <label class="cool-input-label">
+                        <span class="cool-input-span">Address*</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <ValidationSummary />
+    </EditForm>
+
+    @*Where the loading status or the errors will be shown*@
+    <Result ComponentState="@OrderModalState" ExtraMagrignTop="true" />
+</div>

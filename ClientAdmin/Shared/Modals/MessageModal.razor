@@ -1,0 +1,12 @@
+﻿@inherits MessageModalBase
+
+<div class="confirm-modal-container" style="width: fit-content;">
+    @foreach (string message in Messages)
+    {
+        <span>@message</span>
+    }
+
+    <div>
+        <button @onclick="@OkAsync">Ok</button>
+    </div>
+</div>

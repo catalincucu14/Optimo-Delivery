@@ -1,0 +1,77 @@
+﻿@inherits DriverModalBase
+
+<div class="section-fit-content">
+    <EditForm OnValidSubmit="@CreateOrUpdateAsync" Model="@RegisterRequestModel" class="order-modal-form">
+        <DataAnnotationsValidator />
+        <div class="section-header flex-center flex-row-space-between">
+            @*Header title*@
+            @if (Edit)
+            {
+                <button class="section-header-title">Update Driver</button>
+            }
+            else
+            {
+                <button class="section-header-title">Create Driver</button>
+            }
+
+            @*Action buttons*@
+            <div class=" flex-center flex-row-space-between">
+                @if (Edit)
+                {
+                    @*Update driver button*@
+                    <button class="cool-button-img-confirm cool-button-img flex-center flex-row-left" title="Edit">
+                        <span style="margin: 0;" />
+                    </button>
+                }
+                else
+                {
+                    @*Create driver button*@
+                    <button class="cool-button-img-confirm cool-button-img flex-center flex-row-left" title="Create">
+                        <span style="margin: 0;" />
+                    </button>
+                }
+
+                @*Close modal button*@
+                <button @onclick="@CloseAsync" class="cool-button-img-close cool-button-img flex-center flex-row-left" title="Close">
+                    <span style="margin: 0;" />
+                </button>
+            </div>
+        </div>
+
+        @*Mail input*@
+        <div class="cool-input cool-input-light">
+            <InputText @bind-Value="@RegisterRequestModel.Mail" id="Mail" title="Mail" placeholder=" " />
+            <label class="cool-input-label">
+                <span class="cool-input-span">Mail*</span>
+            </label>
+        </div>
+
+        @*Name input*@
+        <div class="cool-input cool-input-light">
+            <InputText @bind-Value="@RegisterRequestModel.Name" id="Name" title="Name" placeholder=" " />
+            <label class="cool-input-label">
+                <span class="cool-input-span">Name*</span>
+            </label>
+        </div>
+
+        @*Password input*@
+        <div class="cool-input cool-input-light">
+            <InputText @bind-Value="@Password" disabled="@DontUpdatePassword" type="password" id="Password" title="Password" placeholder=" " />
+            <label class="cool-input-label">
+                <span class="cool-input-span">Password*</span>
+            </label>
+        </div>
+
+        @if (Edit)
+        {
+            <div style="display: inline-block; margin-top: 5px;">
+                <InputCheckbox @bind-Value="@DontUpdatePassword" />
+                <span style="font-size:14px">Don't Reset Password</span>
+            </div>
+        }
+        <ValidationSummary />
+    </EditForm>
+
+    @*Where the loading status or the errors will be shown*@
+    <Result ComponentState="@DriverModalState" ExtraMagrignTop="true" />
+</div>

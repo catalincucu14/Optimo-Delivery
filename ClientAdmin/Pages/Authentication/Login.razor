@@ -1,0 +1,48 @@
+﻿@page "/authentication/login"
+@layout EmptyLayout
+@inherits LoginBase
+@attribute [AllowAnonymous]
+
+<PageTitle>Optimo Delivery - Login</PageTitle>
+
+<div class="loading">
+    <div class="auth-container flex-center flex-column-center">
+        <button @onclick="@NavigationService.ToHome" class="auth-logo" title="To Home Page" />
+        <div class="auth-title">Login to your account</div>
+
+        @*Login form*@
+        <EditForm OnValidSubmit="@LoginAsync" Model="@LoginRequestModel" class="auth-form flex-center flex-column-center">
+            <DataAnnotationsValidator />
+
+            @*Mail input*@
+            <div class="cool-input cool-input-dark">
+                <InputText @bind-Value="@LoginRequestModel.Mail" id="Mail" title="Mail" placeholder=" " />
+                <label class="cool-input-label">
+                    <span class="cool-input-span">Mail*</span>
+                </label>
+            </div>
+            <ValidationMessage For=@( () => LoginRequestModel.Mail ) />
+
+            @*Password input*@
+            <div class="cool-input cool-input-dark">
+                <InputText @bind-Value="@LoginRequestModel.Password" id="Password" type="password" title="Password" placeholder=" " />
+                <label class="cool-input-label">
+                    <span class="cool-input-span">Password*</span>
+                </label>
+            </div>
+            <ValidationMessage For=@( () => LoginRequestModel.Password ) />
+
+            @*Submit button*@
+            <button id="submit" type="submit">Log In</button>
+
+            @*Redirect to Register page*@
+            <div class="auth-redirect">
+                Don't have an account?
+                <button @onclick="@NavigationService.ToRegister">Register</button>
+            </div>
+        </EditForm>
+
+        @*Where the loading status or the errors will be shown*@
+        <Result ComponentState="@LoginState" />
+    </div>
+</div>
